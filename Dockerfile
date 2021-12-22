@@ -9,7 +9,12 @@ ENV DEBUG=True
 
 # Package installs/updates:
 RUN yum install epel-release -y
-RUN yum install gcc-c++.x86_64 openssl-devel libcurl-devel zlib-devel cmake3 -y
+RUN yum install cmake3 \
+    gcc-c++.x86_64 \
+    libcurl-devel \
+    make \
+    openssl-devel \
+    zlib-devel -y
 
 # Prepare entrypoint:
 COPY ./docker-entrypoint.sh ./
