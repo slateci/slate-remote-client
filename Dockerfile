@@ -2,10 +2,8 @@
 FROM centos:centos7.9.2009
 
 # Docker container environmental variables:
-ENV HISTFILE=/work/.bash_history_docker
-
-# Docker container environmental variables:
 ENV DEBUG=True
+ENV HISTFILE=/work/.bash_history_docker
 
 # Package installs/updates:
 RUN yum install epel-release -y
@@ -20,8 +18,9 @@ RUN yum install cmake3 \
 COPY ./docker-entrypoint.sh ./
 RUN chmod +x ./docker-entrypoint.sh
 
-# Set the work directory:
+# Create the work directory:
 RUN mkdir /work
+WORKDIR /work
 
 # Volumes
 VOLUME [ "/work" ]

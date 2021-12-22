@@ -9,7 +9,8 @@ then
   touch ./.bash_history_docker
 fi
 
-cd /work/build
+# Build the slate executable:
+cd ./build
 cmake3 ..
 make
 
