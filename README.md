@@ -122,7 +122,10 @@ Client Version Server Version
 [root@container1234 build]$
 ```
 
-Access the build artifacts on the host at `/<repo-location>/build/`.
+Tips &amp; Tricks:
+* Access the `slate` executable and other build artifacts on the host at `/<repo-location>/build/`.
+* Re-run the image to rebuild.
+* Or execute `cmake` and `make` commands directly in the container's shell.
 
 Building Natively
 ---------------------
