@@ -54,7 +54,7 @@ Pre-built binaries are available [for Linux](https://jenkins.slateci.io/artifact
 Dependencies
 ============
 
-> **_NOTE:_** Use docker to ignore this section.
+> **_NOTE:_** Use docker and ignore this section.
 
 The following dependencies are required in order to build this application from its source code:
 - gcc (>=4.8.5)
