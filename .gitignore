@@ -1,6 +1,8 @@
 
 # IntelliJ
 .idea
+.vs
+.vscode
 
 # Other
 .bash*
