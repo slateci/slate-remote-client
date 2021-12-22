@@ -1,3 +1,9 @@
 
 # IntelliJ
 .idea
+
+# Build artifacts
+build
+
+# Other
+.bash*
