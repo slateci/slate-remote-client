@@ -7,6 +7,8 @@ Table of Contents
    1. [Installing dependencies on Ubuntu](#installing-dependencies-on-ubuntu)
    1. [Installing dependencies on FreeBSD](#installing-dependencies-on-freebsd)
 1. [Building](#building)
+   1. [Building Using Docker](#building-using-docker)
+   1. [Building Natively](#building-natively)
 1. [Usage](#usage)
    1. [Configuration](#configuration)
    1. [General](#general)
@@ -51,9 +53,13 @@ Pre-built binaries are available [for Linux](https://jenkins.slateci.io/artifact
 
 Dependencies
 ============
+
+> **_NOTE:_** Use docker to ignore this section.
+
 The following dependencies are required in order to build this application from its source code:
 - gcc (>=4.8.5)
 - CMake (>=3.0.0)
+- Make (>=3.8.2)
 - OpenSSL
 - libcurl
 - zlib
@@ -84,6 +90,43 @@ Installing dependencies on FreeBSD
 
 Building
 ========
+
+Building Using Docker
+------------------------
+
+The `Dockerfile` provides the following build arguments:
+
+| Name       | Required | Description                                                                                 |
+|------------|----------|---------------------------------------------------------------------------------------------|
+| `endpoint` | No       | The Fabric API endpoint. If not specified this will be set to `https://api.slateci.io:443`. |
+| `token`    | Yes      | The SLATE CLI token associated with `endpoint`.                                             |
+
+Build the Docker image while at the root of this repository:
+
+```shell
+docker build --file Dockerfile --build-arg token=<token> --tag slate-cli:latest .
+```
+
+Running the image will create a new tagged container, build `slate`, test it against `endpoint`, and start up `/bin/bash`.
+
+```shell
+[you@host ~]$ docker run -it -v /<repo-location>/:/work slate-cli:latest
+Building the slate executable...
+...
+[ 27%] Linking CXX executable slate
+[100%] Built target slate
+Testing the slate executable...
+Endpoint: https://api.slateci.io:443
+Client Version Server Version
+1234           1234
+[root@container1234 build]$
+```
+
+Access the build artifacts on the host at `/<repo-location>/build/`.
+
+Building Natively
+---------------------
+
 In the slate-remote-client directory:
 
 	mkdir build
